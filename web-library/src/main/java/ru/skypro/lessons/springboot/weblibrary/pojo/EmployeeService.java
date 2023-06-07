@@ -8,4 +8,9 @@ public interface EmployeeService {
     Employee getMinSalaryEmployee();
     Employee getMaxSalaryEmployee();
     List<Employee> getHighSalaryEmployees();
+    Employee getEmployeeById(int id);
+    void addEmployee(Employee employee);
+    void updateEmployee(Employee employee);
+    void deleteEmployee(int id);
+    List<Employee> getEmployeesWithSalaryHigherThan(int salary);
 }

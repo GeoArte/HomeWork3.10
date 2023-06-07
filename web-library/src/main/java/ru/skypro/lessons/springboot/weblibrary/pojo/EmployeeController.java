@@ -1,8 +1,8 @@
 package ru.skypro.lessons.springboot.weblibrary.pojo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,27 +17,89 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List<Employee> showCounter() {
-        return employeeService.getAllEmployees();
+    public ResponseEntity<List<Employee>> getAllEmployees() {
+        List<Employee> employees = employeeService.getAllEmployees();
+        return ResponseEntity.ok(employees);
     }
+
     @GetMapping("/salary/sum")
-    public int getSalarySum() {
-        return employeeService.getSalarySum();
+    public ResponseEntity<Integer> getSalarySum() {
+        int salarySum = employeeService.getSalarySum();
+        return ResponseEntity.ok(salarySum);
     }
 
     @GetMapping("/salary/min")
-    public Employee getMinSalaryEmployee() {
-        return employeeService.getMinSalaryEmployee();
+    public ResponseEntity<Employee> getMinSalaryEmployee() {
+        Employee employee = employeeService.getMinSalaryEmployee();
+        if (employee == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(employee);
     }
 
     @GetMapping("/salary/max")
-    public Employee getMaxSalaryEmployee() {
-        return employeeService.getMaxSalaryEmployee();
+    public ResponseEntity<Employee> getMaxSalaryEmployee() {
+        Employee employee = employeeService.getMaxSalaryEmployee();
+        if (employee == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(employee);
     }
 
     @GetMapping("/high-salary")
-    public List<Employee> getHighSalaryEmployees() {
-        return employeeService.getHighSalaryEmployees();
+    public ResponseEntity<List<Employee>> getHighSalaryEmployees() {
+        List<Employee> employees = employeeService.getHighSalaryEmployees();
+        return ResponseEntity.ok(employees);
     }
 
+    @PostMapping
+    public ResponseEntity<Void> createEmployees(@RequestBody List<Employee> employees) {
+        for (Employee employee : employees) {
+            employeeService.addEmployee(employee);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateEmployee(@PathVariable int id, @RequestBody Employee employee) {
+        if (id != employee.getId()) {
+            return ResponseEntity.badRequest().build();
+        }
+        if (employeeService.getEmployeeById(id) == null) {
+            return ResponseEntity.notFound().build();
+        }
+        employeeService.updateEmployee(employee);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable int id) {
+        Employee employee = employeeService.getEmployeeById(id);
+        if (employee == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(employee);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEmployee(@PathVariable int id) {
+        Employee employee = employeeService.getEmployeeById(id);
+        if (employee == null) {
+            return ResponseEntity.notFound().build();
+        }
+        employeeService.deleteEmployee(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/salaryHigherThan")
+    public ResponseEntity<List<Employee>> getEmployeesWithSalaryHigherThan(@RequestParam int salary) {
+        List<Employee> employees = employeeService.getEmployeesWithSalaryHigherThan(salary);
+        return ResponseEntity.ok(employees);
+    }
 }
+
+
+
+
+
+
