@@ -23,9 +23,5 @@ public class RestExceptionHandler {
         errorResponse.setMessage(ex.getMessage());
         return ResponseEntity.badRequest().body(errorResponse);
     }
+
 }
-
-
-
-
-
