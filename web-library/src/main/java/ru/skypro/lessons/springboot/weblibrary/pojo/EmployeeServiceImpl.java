@@ -92,7 +92,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void updateEmployee(Employee employee) {
-        employeeRepository.updateEmployee(employee);
+        employeeRepository.save(employee);
     }
 
     @Override
@@ -101,8 +101,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> getEmployeesWithSalaryHigherThan(int salary) {
-        return employeeRepository.getEmployeesWithSalaryHigherThan(salary);
+    public List<Employee> getEmployeesWithSalaryGreaterThan(int salary) {
+        return employeeRepository.getEmployeesWithSalaryGreaterThan(salary);
     }
     public List<Employee> getEmployeesWithHighestSalary() {
         return employeeRepository.findEmployeesWithHighestSalary();

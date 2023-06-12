@@ -93,7 +93,7 @@ public class EmployeeController {
 
     @GetMapping("/salaryHigherThan")
     public ResponseEntity<List<Employee>> getEmployeesWithSalaryHigherThan(@RequestParam int salary) {
-        List<Employee> employees = employeeService.getEmployeesWithSalaryHigherThan(salary);
+        List<Employee> employees = employeeService.getEmployeesWithSalaryGreaterThan(salary);
         return ResponseEntity.ok(employees);
     }
     @GetMapping("/withHighestSalary")

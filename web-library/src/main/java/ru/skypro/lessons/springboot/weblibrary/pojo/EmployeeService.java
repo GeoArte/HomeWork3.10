@@ -16,7 +16,7 @@ public interface EmployeeService {
     void addEmployee(Employee employee);
     void updateEmployee(Employee employee);
     void deleteEmployeeById(int id);
-    List<Employee> getEmployeesWithSalaryHigherThan(int salary);
+    List<Employee> getEmployeesWithSalaryGreaterThan(int salary);
 
     List<Employee> getEmployeesWithHighestSalary();
 

@@ -12,10 +12,7 @@ public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
 
     public List<Employee> getAllEmployees();
     Employee getEmployeeById(int id);
-    void addEmployee(Employee employee);
-    void updateEmployee(Employee employee);
-    void deleteEmployee(int id);
-    List<Employee> getEmployeesWithSalaryHigherThan(int salary);
+    List<Employee> getEmployeesWithSalaryGreaterThan(int salary);
     @Query("SELECT e FROM Employee e")
     List<Employee> findAllEmployees();
     @Query("SELECT e FROM Employee e WHERE e.salary = (SELECT MAX(e2.salary) FROM Employee e2)")
