@@ -2,17 +2,15 @@ package ru.skypro.lessons.springboot.weblibrary.pojo;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
-
-    public List<Employee> getAllEmployees();
-    Employee getEmployeeById(int id);
-    List<Employee> getEmployeesWithSalaryGreaterThan(int salary);
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+    List<Employee> getEmployeesBySalaryGreaterThan(int salary);
     @Query("SELECT e FROM Employee e")
     List<Employee> findAllEmployees();
     @Query("SELECT e FROM Employee e WHERE e.salary = (SELECT MAX(e2.salary) FROM Employee e2)")

@@ -21,19 +21,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findAllEmployees() {
-        return employeeRepository.getAllEmployees();
+        return employeeRepository.findAllEmployees();
     }
 
     public List<EmployeeDTO> getAllEmployees() {
         // Получаем список сотрудников из репозитория,
         // Преобразуем их в DTO и собираем в список
-        return employeeRepository.getAllEmployees().stream()
+        return employeeRepository.findAllEmployees().stream()
                 .map(EmployeeDTO::fromEmployee)
                 .collect(Collectors.toList());
     }
     public int getSalarySum() {
         int sum = 0;
-        List<Employee> employees = employeeRepository.getAllEmployees();
+        List<Employee> employees = employeeRepository.findAllEmployees();
         for (Employee employee : employees) {
             sum += employee.getSalary();
         }
@@ -41,7 +41,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public Employee getMinSalaryEmployee() {
-        List<Employee> employees = employeeRepository.getAllEmployees();
+        List<Employee> employees = employeeRepository.findAllEmployees();
         if (employees.isEmpty()) {
             return null;
         }
@@ -55,7 +55,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public Employee getMaxSalaryEmployee() {
-        List<Employee> employees = employeeRepository.getAllEmployees();
+        List<Employee> employees = employeeRepository.findAllEmployees();
         if (employees.isEmpty()) {
             return null;
         }
@@ -69,7 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public List<Employee> getHighSalaryEmployees() {
-        List<Employee> employees = employeeRepository.getAllEmployees();
+        List<Employee> employees = employeeRepository.findAllEmployees();
         int averageSalary = getSalarySum() / employees.size();
         List<Employee> highSalaryEmployees = new ArrayList<>();
         for (Employee employee : employees) {
@@ -102,7 +102,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> getEmployeesWithSalaryGreaterThan(int salary) {
-        return employeeRepository.getEmployeesWithSalaryGreaterThan(salary);
+        return employeeRepository.getEmployeesBySalaryGreaterThan(salary);
     }
     public List<Employee> getEmployeesWithHighestSalary() {
         return employeeRepository.findEmployeesWithHighestSalary();
