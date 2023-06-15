@@ -22,6 +22,11 @@ public class EmployeeController {
         return ResponseEntity.ok(employees);
     }
 
+    @GetMapping(params = "position")
+    public List<Employee> getEmployeesByPosition(@RequestParam String position) {
+        return employeeService.getEmployeesByPosition(position);
+    }
+
     @GetMapping("/salary/sum")
     public ResponseEntity<Integer> getSalarySum() {
         int salarySum = employeeService.getSalarySum();
@@ -99,15 +104,6 @@ public class EmployeeController {
     @GetMapping("/withHighestSalary")
     public List<Employee> getEmployeesWithHighestSalary() {
         return employeeService.getEmployeesWithHighestSalary();
-    }
-
-    @GetMapping
-    public List<Employee> getEmployeesByPosition(@RequestParam(required = false) String position) {
-        if (position != null && !position.isEmpty()) {
-            return employeeService.getEmployeesByPosition(position);
-        } else {
-            return employeeService.findAllEmployees();
-        }
     }
 
     @GetMapping("/{id}/fullInfo")
