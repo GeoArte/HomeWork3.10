@@ -1,0 +1,10 @@
+CREATE TABLE employee (
+id SERIAL PRIMARY KEY,
+name VARCHAR(255),
+salary DECIMAL(10, 2)
+);
+
+CREATE TABLE position (
+id SERIAL PRIMARY KEY,
+name VARCHAR(255)
+);

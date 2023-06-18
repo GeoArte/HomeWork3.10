@@ -1,28 +1,52 @@
 package ru.skypro.lessons.springboot.weblibrary.pojo;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "employee")
 public class Employee {
-    private  int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String name;
     private int salary;
 
-    private int idCreator = 1;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "position_id")
+    private Position position;
+    public Employee() {
+    }
 
-    public Employee(String name, int salary) {
+    public Employee(Integer id, String name, int salary, Position position) {
+        this.id = id;
         this.name = name;
         this.salary = salary;
-        this.id = idCreator;
-        idCreator ++;
+        this.position = position;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getSalary() {
         return salary;
     }
 
-    public int getId() {
-        return id;
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 }

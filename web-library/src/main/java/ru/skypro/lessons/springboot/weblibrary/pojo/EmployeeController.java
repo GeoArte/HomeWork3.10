@@ -18,8 +18,13 @@ public class EmployeeController {
 
     @GetMapping
     public ResponseEntity<List<Employee>> getAllEmployees() {
-        List<Employee> employees = employeeService.getAllEmployees();
+        List<Employee> employees = employeeService.findAllEmployees();
         return ResponseEntity.ok(employees);
+    }
+
+    @GetMapping(params = "position")
+    public List<Employee> getEmployeesByPosition(@RequestParam String position) {
+        return employeeService.getEmployeesByPosition(position);
     }
 
     @GetMapping("/salary/sum")
@@ -87,14 +92,29 @@ public class EmployeeController {
         if (employee == null) {
             return ResponseEntity.notFound().build();
         }
-        employeeService.deleteEmployee(id);
+        employeeService.deleteEmployeeById(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/salaryHigherThan")
     public ResponseEntity<List<Employee>> getEmployeesWithSalaryHigherThan(@RequestParam int salary) {
-        List<Employee> employees = employeeService.getEmployeesWithSalaryHigherThan(salary);
+        List<Employee> employees = employeeService.getEmployeesWithSalaryGreaterThan(salary);
         return ResponseEntity.ok(employees);
+    }
+    @GetMapping("/withHighestSalary")
+    public List<Employee> getEmployeesWithHighestSalary() {
+        return employeeService.getEmployeesWithHighestSalary();
+    }
+
+    @GetMapping("/{id}/fullInfo")
+    public Employee getEmployeeFullInfo(@PathVariable int id) {
+        return employeeService.getEmployeeFullInfo(id);
+    }
+
+    @GetMapping("/page")
+    public List<Employee> getEmployeesByPage(@RequestParam(defaultValue = "0") int page) {
+        int pageSize = 10;
+        return employeeService.getEmployeesByPage(page);
     }
 }
 
