@@ -1,19 +1,28 @@
 package ru.skypro.lessons.springboot.weblibrary.pojo;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
+    private final ReportService reportService;
 
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeController(EmployeeService employeeService, ReportService reportService) {
         this.employeeService = employeeService;
+        this.reportService = reportService;
     }
 
     @GetMapping
@@ -116,10 +125,43 @@ public class EmployeeController {
         int pageSize = 10;
         return employeeService.getEmployeesByPage(page);
     }
+    @PostMapping("/upload")
+    public ResponseEntity<Void> uploadEmployees(@RequestBody List<Employee> employees) {
+        for (Employee employee : employees) {
+            employeeService.addEmployee(employee);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+    @GetMapping("/{id}/report")
+    public ResponseEntity<Report> getEmployeeReportById(@PathVariable int id) {
+        Report report = employeeService.getEmployeeReportById(id);
+
+        if (report != null) {
+            return ResponseEntity.ok(report);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @PostMapping("/report")
+    public Long createReport() throws IOException {
+        String reportJson = employeeService.generateReportJson();
+        String filePath = employeeService.saveReportToFile(reportJson);
+
+        Report report = new Report();
+        report.setFilePath(filePath);
+
+        return employeeService.saveReport(report);
+    }
+    @GetMapping(value = "/report/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getReportById(@PathVariable Long id) {
+        String filePath = employeeService.getReportFilePathById(id);
+
+        if (filePath == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Чтение содержимого файла и его возврат в виде JSON-строки
+        String fileContent = employeeService.readFileContent(filePath);
+        return ResponseEntity.ok(fileContent);
+    }
 }
-
-
-
-
-
-
