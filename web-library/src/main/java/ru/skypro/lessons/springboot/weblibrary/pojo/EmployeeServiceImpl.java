@@ -1,7 +1,5 @@
 package ru.skypro.lessons.springboot.weblibrary.pojo;
 
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.stereotype.Service;
 import ru.skypro.lessons.springboot.weblibrary.dto.EmployeeDTO;
 
@@ -189,16 +187,15 @@ public class EmployeeServiceImpl implements EmployeeService {
         return jsonBuilder.toString();
     }
 
-    private void saveReportToFile(String reportJson) throws IOException {
-        // Генерация уникального имени файла
-        String fileName = generateUniqueFileName();
+    public String saveReportToFile(String jsonContent) throws IOException {
+        String fileName = UUID.randomUUID().toString() + ".json";
+        String filePath = "/path/to/save/directory/" + fileName;
 
-        File file = new File("C:\\Users\\gosha\\IdeaProjects\\web-library", fileName);
-
-        // Запись JSON-строки отчета в файл
-        try (FileWriter writer = new FileWriter(file)) {
-            writer.write(reportJson);
+        try (FileWriter fileWriter = new FileWriter(filePath)) {
+            fileWriter.write(jsonContent);
         }
+
+        return filePath;
     }
 
     public Long saveReport(Report report) {

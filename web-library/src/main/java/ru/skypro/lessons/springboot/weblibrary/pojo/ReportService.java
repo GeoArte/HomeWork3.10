@@ -11,8 +11,7 @@ public class ReportService {
         this.reportRepository = reportRepository;
     }
 
-    public Long saveReport(ResponseEntity<String> report) {
-        Report savedReport = reportRepository.save(report);
-        return savedReport.getId();
+    public void saveReport(Report report) {
+        reportRepository.save(report);
     }
 }
