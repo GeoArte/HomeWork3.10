@@ -29,7 +29,7 @@ public interface EmployeeService {
     List<DepartmentStatistics> getDepartmentStatistics();
     String generateReportJson();
 
-    saveReportToFile(String reportJson) throws IOException;
+    String saveReportToFile(String reportJson) throws IOException;
 
     public Long saveReport(Report report);
 
