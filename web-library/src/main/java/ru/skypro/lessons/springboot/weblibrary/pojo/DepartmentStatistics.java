@@ -9,6 +9,14 @@ public class DepartmentStatistics {
     private BigDecimal minSalary;
     private BigDecimal avgSalary;
 
+    public DepartmentStatistics(String departmentName, int employeeCount, BigDecimal maxSalary, BigDecimal minSalary, BigDecimal avgSalary){
+        this.avgSalary = avgSalary;
+        this.departmentName = departmentName;
+        this.employeeCount = employeeCount;
+        this.maxSalary = maxSalary;
+        this.minSalary = minSalary;
+    }
+
     public BigDecimal getMinSalary() {
         return minSalary;
     }

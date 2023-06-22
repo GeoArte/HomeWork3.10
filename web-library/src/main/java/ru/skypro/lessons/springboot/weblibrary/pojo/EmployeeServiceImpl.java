@@ -128,15 +128,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findEmployeesByPage(offset, pageSize);
     }
 
-    public Report getEmployeeReportById(int id) {
-        Employee employee = employeeRepository.findById(id).orElse(null);
-
-        if (employee != null) {
-            // Получение отчета сотрудника
-            Report report = reportRepository.findByEmployee(employee);
-            return report;
+    public File getEmployeeReportById(int id) {
+        Optional<Report> optionalReport = reportRepository.findById(id);
+        if (optionalReport.isPresent()) {
+            Report report = optionalReport.get();
+            String filePath = report.getFilePath();
+            return new File(filePath);
         } else {
-            return null;
+            throw new IllegalArgumentException("Report with ID " + id + " does not exist");
         }
     }
 
@@ -200,7 +199,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public Long saveReport(Report report) {
         Report savedReport = reportRepository.save(report);
-        return savedReport.getId();
+        return (long) savedReport.getId();
     }
 
     public String readFileContent(String filePath) {
@@ -214,7 +213,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 
-    public String getReportFilePathById(Long id) {
+    public String getReportFilePathById(int id) {
         Optional<Report> reportOptional = reportRepository.findById(id);
 
         if (reportOptional.isPresent()) {

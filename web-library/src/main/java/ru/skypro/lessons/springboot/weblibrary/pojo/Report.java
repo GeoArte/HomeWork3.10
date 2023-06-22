@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "department")
     private String department;
@@ -50,7 +50,7 @@ public class Report {
         return employeeCount;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

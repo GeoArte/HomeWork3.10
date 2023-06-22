@@ -1,9 +1,12 @@
 package ru.skypro.lessons.springboot.weblibrary.pojo;
 
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.core.io.Resource;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -133,11 +136,16 @@ public class EmployeeController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
     @GetMapping("/{id}/report")
-    public ResponseEntity<Report> getEmployeeReportById(@PathVariable int id) {
-        Report report = employeeService.getEmployeeReportById(id);
+    public ResponseEntity<Resource> getEmployeeReportById(@PathVariable int id) {
+        File reportFile = employeeService.getEmployeeReportById(id);
 
-        if (report != null) {
-            return ResponseEntity.ok(report);
+        if (reportFile != null && reportFile.exists()) {
+            Resource resource = new FileSystemResource(reportFile);
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + resource.getFilename())
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .contentLength(reportFile.length())
+                    .body(resource);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -153,7 +161,7 @@ public class EmployeeController {
         return employeeService.saveReport(report);
     }
     @GetMapping(value = "/report/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> getReportById(@PathVariable Long id) {
+    public ResponseEntity<String> getReportById(@PathVariable int id) {
         String filePath = employeeService.getReportFilePathById(id);
 
         if (filePath == null) {
