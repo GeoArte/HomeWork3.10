@@ -19,7 +19,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     List<Employee> findEmployeesByPosition(String position);
     @Query(value = "SELECT * FROM Employee ORDER BY id LIMIT ?1, ?2", nativeQuery = true)
     List<Employee> findEmployeesByPage(int offset, int pageSize);
-    @Query("SELECT new ru.skypro.lessons.springboot.weblibrary.pojo(e.department.name, COUNT(e), MAX(e.salary), MIN(e.salary), AVG(e.salary)) " +
+    @Query("SELECT new ru.skypro.lessons.springboot.weblibrary.pojo.DepartmentStatistics(e.department, COUNT(e), MAX(e.salary), MIN(e.salary), AVG(e.salary)) " +
             "FROM Employee e GROUP BY e.department")
     List<DepartmentStatistics> getDepartmentStatistics();
 }
