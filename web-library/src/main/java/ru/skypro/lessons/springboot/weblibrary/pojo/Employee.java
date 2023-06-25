@@ -9,6 +9,8 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "department")
+    private String department;
 
     private String name;
     private int salary;
@@ -48,5 +50,21 @@ public class Employee {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

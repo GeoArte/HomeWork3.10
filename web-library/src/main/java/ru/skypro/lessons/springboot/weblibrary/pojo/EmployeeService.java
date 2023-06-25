@@ -1,10 +1,9 @@
 package ru.skypro.lessons.springboot.weblibrary.pojo;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import ru.skypro.lessons.springboot.weblibrary.dto.EmployeeDTO;
-
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public interface EmployeeService {
     List<Employee> findAllEmployees();
@@ -26,4 +25,17 @@ public interface EmployeeService {
 
 
     List<Employee> getEmployeesByPage(int page);
+
+    File getEmployeeReportById(int id);
+
+    List<DepartmentStatistics> getDepartmentStatistics();
+    String generateReportJson();
+
+    String saveReportToFile(String reportJson) throws IOException;
+
+    public Long saveReport(Report report);
+
+    public String readFileContent(String filePath);
+
+    public String getReportFilePathById(int id);
 }

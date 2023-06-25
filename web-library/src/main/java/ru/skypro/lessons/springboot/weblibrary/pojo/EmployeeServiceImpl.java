@@ -1,22 +1,29 @@
 package ru.skypro.lessons.springboot.weblibrary.pojo;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.skypro.lessons.springboot.weblibrary.dto.EmployeeDTO;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final ReportRepository reportRepository;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository, ReportRepository reportRepository) {
         this.employeeRepository = employeeRepository;
+        this.reportRepository = reportRepository;
     }
 
     @Override
@@ -119,5 +126,101 @@ public class EmployeeServiceImpl implements EmployeeService {
         int pageSize = 10;
         int offset = page * pageSize;
         return employeeRepository.findEmployeesByPage(offset, pageSize);
+    }
+
+    public File getEmployeeReportById(int id) {
+        Optional<Report> optionalReport = reportRepository.findById(id);
+        if (optionalReport.isPresent()) {
+            Report report = optionalReport.get();
+            String filePath = report.getFilePath();
+            return new File(filePath);
+        } else {
+            throw new IllegalArgumentException("Report with ID " + id + " does not exist");
+        }
+    }
+
+    public List<DepartmentStatistics> getDepartmentStatistics() {
+        return employeeRepository.getDepartmentStatistics();
+    }
+
+        private String generateUniqueFileName() {
+        // Генерация уникального имени файла, например, на основе текущей даты и времени
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        return "report_" + timestamp + ".json";
+    }
+
+    private void saveFile(String content, String fileName) {
+        // Логика сохранения файла в файловой системе на вашем компьютере
+        // Например, можно использовать FileOutputStream
+        try (FileOutputStream fileOutputStream = new FileOutputStream(fileName)) {
+            fileOutputStream.write(content.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public String generateReportJson() {
+        List<DepartmentStatistics> departmentStatistics = employeeRepository.getDepartmentStatistics();
+
+        StringBuilder jsonBuilder = new StringBuilder();
+        jsonBuilder.append("{");
+        jsonBuilder.append("\"report\": [");
+
+        for (int i = 0; i < departmentStatistics.size(); i++) {
+            DepartmentStatistics stats = departmentStatistics.get(i);
+            jsonBuilder.append("{");
+            jsonBuilder.append("\"department\": \"").append(stats.getDepartmentName()).append("\",");
+            jsonBuilder.append("\"employeeCount\": ").append(stats.getEmployeeCount()).append(",");
+            jsonBuilder.append("\"maxSalary\": ").append(stats.getMaxSalary()).append(",");
+            jsonBuilder.append("\"minSalary\": ").append(stats.getMinSalary()).append(",");
+            jsonBuilder.append("\"avgSalary\": ").append(stats.getAvgSalary());
+            jsonBuilder.append("}");
+
+            if (i < departmentStatistics.size() - 1) {
+                jsonBuilder.append(",");
+            }
+        }
+
+        jsonBuilder.append("]");
+        jsonBuilder.append("}");
+
+        return jsonBuilder.toString();
+    }
+
+    public String saveReportToFile(String jsonContent) throws IOException {
+        String fileName = UUID.randomUUID().toString() + ".json";
+        String filePath = "/path/to/save/directory/" + fileName;
+
+        try (FileWriter fileWriter = new FileWriter(filePath)) {
+            fileWriter.write(jsonContent);
+        }
+
+        return filePath;
+    }
+
+    public Long saveReport(Report report) {
+        Report savedReport = reportRepository.save(report);
+        return (long) savedReport.getId();
+    }
+
+    public String readFileContent(String filePath) {
+        try {
+            Path path = Paths.get(filePath);
+            return new String(Files.readAllBytes(path));
+        } catch (IOException e) {
+            // Обработка ошибки чтения файла
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public String getReportFilePathById(int id) {
+        Optional<Report> reportOptional = reportRepository.findById(id);
+
+        if (reportOptional.isPresent()) {
+            Report report = reportOptional.get();
+            return report.getFilePath();
+        }
+
+        return null;
     }
 }
