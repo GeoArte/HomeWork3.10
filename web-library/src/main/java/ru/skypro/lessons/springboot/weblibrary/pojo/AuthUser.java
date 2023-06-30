@@ -1,6 +1,9 @@
 package ru.skypro.lessons.springboot.weblibrary.pojo;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.Collection;
 
 @Entity
 @Table(name = "auth_user")
@@ -20,6 +23,8 @@ public class AuthUser {
 
     // Создаем поле password для хранения пароля пользователя
     private String password;
+
+    private Collection<GrantedAuthority> authority;
 
     // standard getters and setters
 
@@ -41,5 +46,13 @@ public class AuthUser {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Collection<? extends GrantedAuthority> getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Collection<GrantedAuthority> authority) {
+        this.authority = authority;
     }
 }

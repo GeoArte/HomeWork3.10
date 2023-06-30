@@ -17,7 +17,8 @@ public class SecurityUserPrincipal implements UserDetails {
     @Override
     // Возвращает авторитеты (роли) пользователя.
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        
+        return this.getAuthorities();
     }
 
     @Override

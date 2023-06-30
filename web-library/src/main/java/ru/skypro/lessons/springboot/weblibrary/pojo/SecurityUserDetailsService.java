@@ -2,9 +2,10 @@ package ru.skypro.lessons.springboot.weblibrary.pojo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public class SecurityUserDetailsService implements UserDetailsService{
+public class SecurityUserDetailsService implements UserDetailsService {
     @Autowired
     // Внедряем зависимость UserRepository для доступа к базе пользователей
     private UserRepository userRepository;
