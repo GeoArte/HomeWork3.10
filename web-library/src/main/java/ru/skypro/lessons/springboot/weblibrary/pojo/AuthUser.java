@@ -26,6 +26,7 @@ public class AuthUser {
 
 
     @OneToMany
+    @JoinColumn(name = "authority", referencedColumnName = "authorities", insertable = false, updatable = false)
     private Collection<CustomAuthority> authority;
 
     // standard getters and setters
