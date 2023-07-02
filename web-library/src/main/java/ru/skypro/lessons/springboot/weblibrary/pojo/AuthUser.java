@@ -24,7 +24,9 @@ public class AuthUser {
     // Создаем поле password для хранения пароля пользователя
     private String password;
 
-    private Collection<GrantedAuthority> authority;
+
+    @OneToMany
+    private Collection<CustomAuthority> authority;
 
     // standard getters and setters
 
@@ -52,7 +54,7 @@ public class AuthUser {
         return authority;
     }
 
-    public void setAuthority(Collection<GrantedAuthority> authority) {
+    public void setAuthority(Collection<CustomAuthority> authority) {
         this.authority = authority;
     }
 }
