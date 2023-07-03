@@ -17,6 +17,9 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
+import javax.sql.DataSource;
 
 @EnableWebSecurity
 @Configuration
@@ -48,26 +51,16 @@ public class SecurityConfig {
     // Создаем бин SecurityFilterChain для настройки фильтра безопасности.
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
-                .authorizeHttpRequests(this::customizeRequest);
-
+        http.csrf(csrf -> csrf.ignoringRequestMatchers("/*"))
+                .authorizeHttpRequests(this::customizeRequest)
+                .formLogin(Customizer.withDefaults())
+                .logout(Customizer.withDefaults());
         return http.build();
     }
-
-    // Метод для настройки прав доступа к URL на основе ролей пользователей
     private void customizeRequest(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry registry) {
         try {
-            registry.requestMatchers(new AntPathRequestMatcher("/admin/**"))
-                    .hasAnyRole("ADMIN")  // Только для пользователей с ролью ADMIN.
-                    .requestMatchers(new AntPathRequestMatcher("/**"))
-                    .hasAnyRole("USER")   // Только для пользователей с ролью USER.
-                    .and()
-                    .formLogin().permitAll()  // Разрешаем всем доступ к форме ввода.
-                    .and()
-                    .logout().logoutUrl("/logout");  // Устанавливаем URL
-            // для выхода из системы.
-
+            registry.requestMatchers(new AntPathRequestMatcher("/admin/**")).hasAnyRole(Role.ADMIN.name())
+                    .requestMatchers(new AntPathRequestMatcher("/**")).hasAnyRole(Role.USER.name());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -77,5 +70,13 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authProvider(PasswordEncoder passwordEncoder) {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder);
+        return authProvider;
     }
 }

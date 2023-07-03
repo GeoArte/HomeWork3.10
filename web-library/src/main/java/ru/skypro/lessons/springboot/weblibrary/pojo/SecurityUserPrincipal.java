@@ -4,21 +4,30 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 
 public class SecurityUserPrincipal implements UserDetails {
-    private AuthUser user;
-
+    private User user;
     // Конструктор класса SecurityUserPrincipal,
     // принимающий объект класса AuthUser.
-    public SecurityUserPrincipal(AuthUser user) {
+    public SecurityUserPrincipal(User user) {
         this.user = user;
     }
 
     @Override
     // Возвращает авторитеты (роли) пользователя.
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        
-        return this.getAuthorities();
+
+        return Optional.ofNullable(user)
+                .map(User::getRole)
+                .map(role -> "ROLE_" + role)
+                .map(SimpleGrantedAuthority::new)
+                .map(List::of)
+                .orElse(Collections.emptyList());
     }
 
     @Override

@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SecurityUserDetailsService implements UserDetailsService {
     @Autowired
     // Внедряем зависимость UserRepository для доступа к базе пользователей
@@ -13,7 +15,7 @@ public class SecurityUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) {
         // Ищем пользователя в базе данных с указанным именем пользователя
-        AuthUser user = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
         // Если пользователь не найден, выбрасываем исключение
         if (user == null) {
             throw new UsernameNotFoundException(username);

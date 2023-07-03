@@ -17,6 +17,10 @@ public class User {
     @Column(name = "enabled")
     private int enabled;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
     // Конструкторы, геттеры и сеттеры
 
     public User() {
@@ -52,6 +56,14 @@ public class User {
 
     public void setEnabled(int enabled) {
         this.enabled = enabled;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
 
