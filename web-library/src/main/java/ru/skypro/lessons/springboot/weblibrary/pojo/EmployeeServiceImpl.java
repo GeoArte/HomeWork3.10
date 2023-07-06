@@ -1,5 +1,7 @@
 package ru.skypro.lessons.springboot.weblibrary.pojo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ru.skypro.lessons.springboot.weblibrary.dto.EmployeeDTO;
 
@@ -26,6 +28,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.reportRepository = reportRepository;
     }
 
+    Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
+
     @Override
     public List<Employee> findAllEmployees() {
         return employeeRepository.findAllEmployees();
@@ -34,11 +38,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<EmployeeDTO> getAllEmployees() {
         // Получаем список сотрудников из репозитория,
         // Преобразуем их в DTO и собираем в список
+        logger.info("Was invoked method for get all employees ");
         return employeeRepository.findAllEmployees().stream()
                 .map(EmployeeDTO::fromEmployee)
                 .collect(Collectors.toList());
     }
     public int getSalarySum() {
+        logger.info("Was invoked method for get salary sum all employees ");
         int sum = 0;
         List<Employee> employees = employeeRepository.findAllEmployees();
         for (Employee employee : employees) {
@@ -48,6 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public Employee getMinSalaryEmployee() {
+        logger.info("Was invoked method for get min salary ");
         List<Employee> employees = employeeRepository.findAllEmployees();
         if (employees.isEmpty()) {
             return null;
@@ -62,6 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public Employee getMaxSalaryEmployee() {
+        logger.info("Was invoked method for get max salary ");
         List<Employee> employees = employeeRepository.findAllEmployees();
         if (employees.isEmpty()) {
             return null;
@@ -76,6 +84,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public List<Employee> getHighSalaryEmployees() {
+        logger.info("Was invoked method for get high salary employees ");
         List<Employee> employees = employeeRepository.findAllEmployees();
         int averageSalary = getSalarySum() / employees.size();
         List<Employee> highSalaryEmployees = new ArrayList<>();
@@ -84,51 +93,63 @@ public class EmployeeServiceImpl implements EmployeeService {
                 highSalaryEmployees.add(employee);
             }
         }
+        logger.info("Method for get high salary employees return {}", highSalaryEmployees);
         return highSalaryEmployees;
     }
     @Override
     public Employee getEmployeeById(int id) {
+        logger.info("Was invoked method for get employee by id = {} ", id);
         Optional<Employee> employeeOptional = employeeRepository.findById(id);
+        logger.info("Method for get employee by id = {} return {}", id, employeeOptional);
         return employeeOptional.orElseThrow(() -> new IllegalArgumentException());
     }
 
     @Override
     public void addEmployee(Employee employee) {
+        logger.info("Was invoked method for create employee {} ", employee);
         employeeRepository.save(employee);
     }
 
     @Override
     public void updateEmployee(Employee employee) {
+        logger.info("Was invoked method for update employee {} ", employee);
         employeeRepository.save(employee);
     }
 
     @Override
     public void deleteEmployeeById(int id) {
+        logger.info("Was invoked method for delete employee by id = {} ", id);
         employeeRepository.deleteById(id);
     }
 
     @Override
     public List<Employee> getEmployeesWithSalaryGreaterThan(int salary) {
+        logger.info("Was invoked method for get employees with salary greater than {} ", salary);
         return employeeRepository.getEmployeesBySalaryGreaterThan(salary);
     }
     public List<Employee> getEmployeesWithHighestSalary() {
+        logger.info("Was invoked method for get employees with highest salary ");
         return employeeRepository.findEmployeesWithHighestSalary();
     }
 
     public List<Employee> getEmployeesByPosition(String position) {
+        logger.info("Was invoked method for get employees by position = {} ", position);
         return employeeRepository.findEmployeesByPosition(position);
     }
     public Employee getEmployeeFullInfo(int id) {
+        logger.info("Was invoked method for get employees full info by id = {} ", id);
         return employeeRepository.findById(id).orElse(null);
     }
 
     public List<Employee> getEmployeesByPage(int page) {
+        logger.info("Was invoked method for get employees by page = {} ", page);
         int pageSize = 10;
         int offset = page * pageSize;
         return employeeRepository.findEmployeesByPage(offset, pageSize);
     }
 
     public File getEmployeeReportById(int id) {
+        logger.info("Was invoked method for get employees report by id = {} ", id);
         Optional<Report> optionalReport = reportRepository.findById(id);
         if (optionalReport.isPresent()) {
             Report report = optionalReport.get();
@@ -140,6 +161,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public List<DepartmentStatistics> getDepartmentStatistics() {
+        logger.info("Was invoked method for get department statistics");
         return employeeRepository.getDepartmentStatistics();
     }
 
@@ -159,6 +181,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
     public String generateReportJson() {
+        logger.info("Was invoked method for generate report json");
         List<DepartmentStatistics> departmentStatistics = employeeRepository.getDepartmentStatistics();
 
         StringBuilder jsonBuilder = new StringBuilder();
@@ -187,6 +210,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public String saveReportToFile(String jsonContent) throws IOException {
+        logger.info("Was invoked method for save report to file");
         String fileName = UUID.randomUUID().toString() + ".json";
         String filePath = "/path/to/save/directory/" + fileName;
 
@@ -198,11 +222,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public Long saveReport(Report report) {
+        logger.info("Was invoked method for save report");
         Report savedReport = reportRepository.save(report);
         return (long) savedReport.getId();
     }
 
     public String readFileContent(String filePath) {
+        logger.info("Was invoked method for read file content");
         try {
             Path path = Paths.get(filePath);
             return new String(Files.readAllBytes(path));
@@ -214,6 +240,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public String getReportFilePathById(int id) {
+        logger.info("Was invoked method for get report file path by id where id = {} ", id);
         Optional<Report> reportOptional = reportRepository.findById(id);
 
         if (reportOptional.isPresent()) {
