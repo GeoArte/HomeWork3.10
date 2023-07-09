@@ -20,4 +20,12 @@ public class Position {
         this.id = id;
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -81,4 +81,17 @@ public class Report {
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
+
+    @Override
+    public String toString() {
+        return "Report{" +
+                "id=" + id +
+                ", department='" + department + '\'' +
+                ", employeeCount=" + employeeCount +
+                ", maxSalary=" + maxSalary +
+                ", minSalary=" + minSalary +
+                ", avgSalary=" + avgSalary +
+                ", filePath='" + filePath + '\'' +
+                '}';
+    }
 }
