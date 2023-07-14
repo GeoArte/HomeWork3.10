@@ -484,3 +484,62 @@ More locations can be added with the 'searchPath' parameter.
 	at liquibase.changelog.DatabaseChangeLog.include(DatabaseChangeLog.java:832)
 	at liquibase.changelog.DatabaseChangeLog.handleChildNode(DatabaseChangeLog.java:452)
 	... 42 common frames omitted
+00:44:50.656 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Error parsing classpath:liquibase/changelog-master.yml
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1770)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1156)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:931)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:733)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:435)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1305)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1294)
+	at ru.skypro.lessons.springboot.weblibrary.WebLibraryApplication.main(WebLibraryApplication.java:12)
+Caused by: liquibase.exception.ChangeLogParseException: Error parsing classpath:liquibase/changelog-master.yml
+	at liquibase.parser.core.yaml.YamlChangeLogParser.parse(YamlChangeLogParser.java:92)
+	at liquibase.Liquibase.getDatabaseChangeLog(Liquibase.java:607)
+	at liquibase.Liquibase.getDatabaseChangeLog(Liquibase.java:591)
+	at liquibase.Liquibase$16.run(Liquibase.java:2290)
+	at liquibase.Scope.lambda$child$0(Scope.java:187)
+	at liquibase.Scope.child(Scope.java:196)
+	at liquibase.Scope.child(Scope.java:186)
+	at liquibase.Scope.child(Scope.java:165)
+	at liquibase.Liquibase.runInScope(Liquibase.java:2639)
+	at liquibase.Liquibase.listUnrunChangeSets(Liquibase.java:2286)
+	at liquibase.Liquibase.isUpToDateFastCheck(Liquibase.java:506)
+	at liquibase.Liquibase.lambda$update$1(Liquibase.java:237)
+	at liquibase.Scope.lambda$child$0(Scope.java:187)
+	at liquibase.Scope.child(Scope.java:196)
+	at liquibase.Scope.child(Scope.java:186)
+	at liquibase.Scope.child(Scope.java:165)
+	at liquibase.Liquibase.runInScope(Liquibase.java:2639)
+	at liquibase.Liquibase.update(Liquibase.java:236)
+	at liquibase.Liquibase.update(Liquibase.java:221)
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:329)
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:284)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766)
+	... 18 common frames omitted
+Caused by: liquibase.exception.SetupException: The file changeset/changeset1.yml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at liquibase.changelog.DatabaseChangeLog.handleChildNode(DatabaseChangeLog.java:461)
+	at liquibase.changelog.DatabaseChangeLog.load(DatabaseChangeLog.java:388)
+	at liquibase.parser.core.yaml.YamlChangeLogParser.parse(YamlChangeLogParser.java:86)
+	... 40 common frames omitted
+Caused by: liquibase.exception.ChangeLogParseException: The file changeset/changeset1.yml was not found in the configured search path:
+    - Spring classpath
+More locations can be added with the 'searchPath' parameter.
+	at liquibase.changelog.DatabaseChangeLog.include(DatabaseChangeLog.java:832)
+	at liquibase.changelog.DatabaseChangeLog.handleChildNode(DatabaseChangeLog.java:452)
+	... 42 common frames omitted
