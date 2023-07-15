@@ -14,12 +14,12 @@ databaseChangeLog:
                     primaryKey: true
               - column:
                   name: name
-                  type: String
+                  type: varchar
                   constraints:
                     nullable: false
               - column:
                   name: position_id
-                  type: Position
+                  type: int
                   constraints:
                     nullable: false
         - createTable:
@@ -33,7 +33,7 @@ databaseChangeLog:
                     primaryKey: true
               - column:
                   name: name
-                  type: String
+                  type: varchar
                   constraints:
                     nullable: false
         - createTable:
@@ -41,13 +41,13 @@ databaseChangeLog:
             columns:
               - column:
                   name: username
-                  type: String
+                  type: varchar
                   autoIncrement: false
                   constraints:
                     primaryKey: true
               - column:
                   name: password
-                  type: String
+                  type: varchar
                   constraints:
                     nullable: false
               - column:

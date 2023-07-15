@@ -822,3 +822,138 @@ More locations can be added with the 'searchPath' parameter.
 	at liquibase.changelog.DatabaseChangeLog.include(DatabaseChangeLog.java:832)
 	at liquibase.changelog.DatabaseChangeLog.handleChildNode(DatabaseChangeLog.java:452)
 	... 42 common frames omitted
+22:04:03.816 [main] INFO  r.s.l.s.w.WebLibraryApplication - Starting WebLibraryApplication using Java 17.0.7 with PID 19544 (C:\Users\gosha\IdeaProjects\web-library\web-library\target\classes started by gosha in C:\Users\gosha\IdeaProjects\web-library\web-library)
+22:04:03.819 [main] INFO  r.s.l.s.w.WebLibraryApplication - The following 1 profile is active: "test"
+22:04:04.513 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+22:04:04.563 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 44 ms. Found 3 JPA repository interfaces.
+22:04:04.974 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+22:04:04.984 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+22:04:04.985 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+22:04:04.985 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.8]
+22:04:05.056 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22:04:05.057 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1205 ms
+22:04:05.166 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+22:04:05.322 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3312f4f4
+22:04:05.323 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+22:04:05.436 [main] INFO  liquibase.database - Set default schema name to public
+22:04:05.698 [main] INFO  liquibase.executor - Changelog query completed.
+22:04:05.706 [main] INFO  liquibase.executor - Changelog query completed.
+22:04:05.709 [main] INFO  liquibase.executor - Changelog query completed.
+22:04:05.711 [main] INFO  liquibase.executor - Changelog query completed.
+22:04:05.714 [main] INFO  liquibase.executor - Changelog query completed.
+22:04:05.715 [main] INFO  liquibase.lockservice - Successfully acquired change log lock
+22:04:05.739 [main] INFO  liquibase.changelog - Creating database history table with name: public.databasechangelog
+22:04:05.744 [main] INFO  liquibase.executor - Changelog query completed.
+22:04:05.746 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+22:04:05.750 [main] INFO  liquibase.executor - Changelog query completed.
+22:04:05.751 [main] INFO  liquibase.executor - Changelog query completed.
+22:04:05.780 [main] INFO  liquibase.changelog - Table Employee created
+22:04:05.785 [main] INFO  liquibase.changelog - Table position created
+22:04:05.790 [main] ERROR liquibase.changelog - ChangeSet liquibase/changeset/changeset1.yml::1::developer encountered an exception.
+22:04:05.791 [main] INFO  liquibase - Update command encountered an exception.
+22:04:05.792 [main] INFO  liquibase.executor - Changelog query completed.
+22:04:05.792 [main] INFO  liquibase.lockservice - Successfully released change log lock
+22:04:05.794 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.MigrationFailedException: Migration failed for changeset liquibase/changeset/changeset1.yml::1::developer:
+     Reason: liquibase.exception.DatabaseException: ОШИБКА: тип "role" не существует
+  Позиция: 115 [Failed SQL: (0) CREATE TABLE public."Users" (username VARCHAR NOT NULL, password VARCHAR NOT NULL, enabled INTEGER NOT NULL, role ROLE NOT NULL, CONSTRAINT "Users_pkey" PRIMARY KEY (username))]
+22:04:05.794 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+22:04:05.894 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+22:04:05.896 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+22:04:05.907 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+22:04:05.924 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.MigrationFailedException: Migration failed for changeset liquibase/changeset/changeset1.yml::1::developer:
+     Reason: liquibase.exception.DatabaseException: ОШИБКА: тип "role" не существует
+  Позиция: 115 [Failed SQL: (0) CREATE TABLE public."Users" (username VARCHAR NOT NULL, password VARCHAR NOT NULL, enabled INTEGER NOT NULL, role ROLE NOT NULL, CONSTRAINT "Users_pkey" PRIMARY KEY (username))]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1770)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1156)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:931)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:733)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:435)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1305)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1294)
+	at ru.skypro.lessons.springboot.weblibrary.WebLibraryApplication.main(WebLibraryApplication.java:12)
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset liquibase/changeset/changeset1.yml::1::developer:
+     Reason: liquibase.exception.DatabaseException: ОШИБКА: тип "role" не существует
+  Позиция: 115 [Failed SQL: (0) CREATE TABLE public."Users" (username VARCHAR NOT NULL, password VARCHAR NOT NULL, enabled INTEGER NOT NULL, role ROLE NOT NULL, CONSTRAINT "Users_pkey" PRIMARY KEY (username))]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:136)
+	at liquibase.Liquibase.lambda$null$0(Liquibase.java:297)
+	at liquibase.Scope.lambda$child$0(Scope.java:187)
+	at liquibase.Scope.child(Scope.java:196)
+	at liquibase.Scope.child(Scope.java:186)
+	at liquibase.Scope.child(Scope.java:165)
+	at liquibase.Scope.child(Scope.java:256)
+	at liquibase.Liquibase.lambda$update$1(Liquibase.java:295)
+	at liquibase.Scope.lambda$child$0(Scope.java:187)
+	at liquibase.Scope.child(Scope.java:196)
+	at liquibase.Scope.child(Scope.java:186)
+	at liquibase.Scope.child(Scope.java:165)
+	at liquibase.Liquibase.runInScope(Liquibase.java:2639)
+	at liquibase.Liquibase.update(Liquibase.java:236)
+	at liquibase.Liquibase.update(Liquibase.java:221)
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:329)
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:284)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766)
+	... 18 common frames omitted
+Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset liquibase/changeset/changeset1.yml::1::developer:
+     Reason: liquibase.exception.DatabaseException: ОШИБКА: тип "role" не существует
+  Позиция: 115 [Failed SQL: (0) CREATE TABLE public."Users" (username VARCHAR NOT NULL, password VARCHAR NOT NULL, enabled INTEGER NOT NULL, role ROLE NOT NULL, CONSTRAINT "Users_pkey" PRIMARY KEY (username))]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:744)
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:59)
+	at liquibase.changelog.ChangeLogIterator$2.lambda$null$0(ChangeLogIterator.java:124)
+	at liquibase.Scope.lambda$child$0(Scope.java:187)
+	at liquibase.Scope.child(Scope.java:196)
+	at liquibase.Scope.child(Scope.java:186)
+	at liquibase.Scope.child(Scope.java:165)
+	at liquibase.changelog.ChangeLogIterator$2.lambda$run$1(ChangeLogIterator.java:124)
+	at liquibase.Scope.lambda$child$0(Scope.java:187)
+	at liquibase.Scope.child(Scope.java:196)
+	at liquibase.Scope.child(Scope.java:186)
+	at liquibase.Scope.child(Scope.java:165)
+	at liquibase.Scope.child(Scope.java:256)
+	at liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:105)
+	at liquibase.Scope.lambda$child$0(Scope.java:187)
+	at liquibase.Scope.child(Scope.java:196)
+	at liquibase.Scope.child(Scope.java:186)
+	at liquibase.Scope.child(Scope.java:165)
+	at liquibase.Scope.child(Scope.java:256)
+	at liquibase.Scope.child(Scope.java:260)
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:75)
+	... 36 common frames omitted
+Caused by: liquibase.exception.DatabaseException: ОШИБКА: тип "role" не существует
+  Позиция: 115 [Failed SQL: (0) CREATE TABLE public."Users" (username VARCHAR NOT NULL, password VARCHAR NOT NULL, enabled INTEGER NOT NULL, role ROLE NOT NULL, CONSTRAINT "Users_pkey" PRIMARY KEY (username))]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:445)
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:77)
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:160)
+	at liquibase.database.AbstractJdbcDatabase.execute(AbstractJdbcDatabase.java:1270)
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1252)
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:702)
+	... 56 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ОШИБКА: тип "role" не существует
+  Позиция: 115
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:329)
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:315)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:291)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:286)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:441)
+	... 61 common frames omitted
