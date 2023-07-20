@@ -4,7 +4,7 @@ databaseChangeLog:
       author: developer # имя разработчика, который добавил набор изменений
       changes: # список изменений в этом наборе
         - createTable: # команда liquibase — создает таблицу
-            tableName: Employee # название таблицы
+            tableName: employee # название таблицы
             columns: # колонки к данной таблице
               - column: # колонка
                   name: id # название колонки
@@ -15,6 +15,16 @@ databaseChangeLog:
               - column:
                   name: name
                   type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: department
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: salary
+                  type: int
                   constraints:
                     nullable: false
               - column:
@@ -37,7 +47,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
         - createTable:
-            tableName: Users
+            tableName: users
             columns:
               - column:
                   name: username
@@ -60,3 +70,42 @@ databaseChangeLog:
                   type: varchar
                   constraints:
                     nullable: false
+        - createTable:
+            tableName: report
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: department
+                  type: varchar
+                  constraints:
+                    nullable: true
+              - column:
+                  name: employee_count
+                  type: int
+                  constraints:
+                    nullable: true
+              - column:
+                  name: max_salary
+                  type: decimal
+                  constraints:
+                    nullable: true
+              - column:
+                  name: min_salary
+                  type: decimal
+                  constraints:
+                    nullable: true
+              - column:
+                  name: avg_salary
+                  type: decimal
+                  constraints:
+                    nullable: true
+              - column:
+                  name: file_path
+                  type: varchar
+                  constraints:
+                    nullable: true
