@@ -214,10 +214,10 @@ class EmployeeServiceImplTest {
         employee2.setPosition(new Position()); // Другой объект Position
 
         // Мокируем вызовы к employeeRepository.findEmployeesByPosition()
-        when(employeeRepository.findEmployeesByPosition(position)).thenReturn(Arrays.asList(employee1));
+        when(employeeRepository.findEmployeesByPosition(position.getName())).thenReturn(Arrays.asList(employee1));
 
         // Вызываем метод, который мы тестируем
-        List<Employee> result = employeeService.getEmployeesByPosition(position);
+        List<Employee> result = employeeService.getEmployeesByPosition(position.getName());
 
         // Проверяем, что результат соответствует ожиданиям
         assertEquals(1, result.size()); // Ожидаем, что один сотрудник имеет позицию "Engineer"
