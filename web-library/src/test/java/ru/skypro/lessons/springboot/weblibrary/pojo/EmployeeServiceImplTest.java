@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 class EmployeeServiceImplTest {
 
     @InjectMocks
-    private EmployeeService employeeService;
+    private EmployeeServiceImpl employeeService;
 
     @Mock
     private EmployeeRepository employeeRepository;
