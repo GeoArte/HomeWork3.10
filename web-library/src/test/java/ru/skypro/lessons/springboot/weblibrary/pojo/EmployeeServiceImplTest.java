@@ -286,7 +286,7 @@ class EmployeeServiceImplTest {
         String jsonContent = "{\"department\": \"HR\", \"employeeCount\": 5}";
 
         // Мокируем вызовы к reportRepository.saveReportToFile()
-        when(employeeService.saveReportToFile(jsonContent)).thenReturn("/path/to/report.json");
+        when(employeeService.saveReportToFile(jsonContent)).thenReturn("/path/to/save/directory/report.json");
 
         // Вызываем метод, который мы тестируем
         String result = employeeService.saveReportToFile(jsonContent);
@@ -313,7 +313,7 @@ class EmployeeServiceImplTest {
     @Test
     public void testReadFileContent() throws IOException {
         // Создание тестовых данных
-        String filePath = "/path/to/report.json";
+        String filePath = "/path/to/save/directory/report.json";
 
         // Мокируем вызовы к employeeService.readFileContent()
         when(employeeService.readFileContent(filePath)).thenReturn("{\"department\": \"HR\", \"employeeCount\": 5}");
