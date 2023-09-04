@@ -32,11 +32,6 @@ class EmployeeServiceImplTest {
     @Mock
     private ReportRepository reportRepository;
 
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
-
     @Test
     public void testGetSalarySum() {
         // Создание тестовых данных
