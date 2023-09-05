@@ -1761,3 +1761,105 @@ Caused by: liquibase.exception.ValidationFailedException: Validation Failed:
 03:24:40.746 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get max salary 
 03:24:40.751 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees with salary greater than 150 
 03:24:40.757 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees by page = 1 
+22:33:53.542 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for read file content
+22:33:53.587 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for save report to file
+22:33:53.617 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees by position = Engineer 
+22:33:53.634 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get high salary employees 
+22:33:53.636 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get salary sum all employees 
+22:33:53.636 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Method for get high salary employees return [Employee{id=null, department='null', name='null', salary=300, position=null}]
+22:33:53.648 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get report file path by id where id = 1 
+22:33:53.655 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees with highest salary 
+22:33:53.663 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees full info by id = 1 
+22:33:53.666 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get min salary 
+22:33:53.673 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for create employee Employee{id=null, department='null', name='null', salary=0, position=null} 
+22:33:53.686 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for delete employee by id = 1 
+22:33:53.692 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employee by id = 1 
+22:33:53.693 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Method for get employee by id = 1 return Optional[Employee{id=1, department='null', name='null', salary=0, position=null}]
+22:33:53.698 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees report by id = 1 
+22:33:53.704 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for save report
+22:33:53.709 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for update employee Employee{id=null, department='null', name='null', salary=0, position=null} 
+22:33:53.714 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get salary sum all employees 
+22:33:53.718 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get max salary 
+22:33:53.723 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees with salary greater than 150 
+22:33:53.725 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees by page = 1 
+22:38:59.398 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for read file content
+22:38:59.442 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for save report to file
+22:38:59.473 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees by position = Engineer 
+22:38:59.486 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get high salary employees 
+22:38:59.486 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get salary sum all employees 
+22:38:59.486 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Method for get high salary employees return [Employee{id=null, department='null', name='null', salary=300, position=null}]
+22:38:59.500 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get report file path by id where id = 1 
+22:38:59.506 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees with highest salary 
+22:38:59.512 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees full info by id = 1 
+22:38:59.515 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get min salary 
+22:38:59.520 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for create employee Employee{id=null, department='null', name='null', salary=0, position=null} 
+22:38:59.532 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for delete employee by id = 1 
+22:38:59.537 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employee by id = 1 
+22:38:59.538 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Method for get employee by id = 1 return Optional[Employee{id=1, department='null', name='null', salary=0, position=null}]
+22:38:59.543 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees report by id = 1 
+22:38:59.548 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for save report
+22:38:59.552 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for update employee Employee{id=null, department='null', name='null', salary=0, position=null} 
+22:38:59.555 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get salary sum all employees 
+22:38:59.560 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get max salary 
+22:38:59.565 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees with salary greater than 150 
+22:38:59.567 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees by page = 1 
+22:39:22.079 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for read file content
+22:39:22.128 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees by position = Engineer 
+22:39:22.144 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get high salary employees 
+22:39:22.145 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get salary sum all employees 
+22:39:22.145 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Method for get high salary employees return [Employee{id=null, department='null', name='null', salary=300, position=null}]
+22:39:22.156 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get report file path by id where id = 1 
+22:39:22.163 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees with highest salary 
+22:39:22.168 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees full info by id = 1 
+22:39:22.175 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get min salary 
+22:39:22.178 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for create employee Employee{id=null, department='null', name='null', salary=0, position=null} 
+22:39:22.192 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for delete employee by id = 1 
+22:39:22.198 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employee by id = 1 
+22:39:22.198 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Method for get employee by id = 1 return Optional[Employee{id=1, department='null', name='null', salary=0, position=null}]
+22:39:22.201 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees report by id = 1 
+22:39:22.206 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for save report
+22:39:22.210 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for update employee Employee{id=null, department='null', name='null', salary=0, position=null} 
+22:39:22.214 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get salary sum all employees 
+22:39:22.217 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get max salary 
+22:39:22.221 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees with salary greater than 150 
+22:39:22.226 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees by page = 1 
+22:42:28.169 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for read file content
+22:42:28.233 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees by position = Engineer 
+22:42:28.247 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get high salary employees 
+22:42:28.248 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get salary sum all employees 
+22:42:28.249 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Method for get high salary employees return [Employee{id=null, department='null', name='null', salary=300, position=null}]
+22:42:28.259 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get report file path by id where id = 1 
+22:42:28.266 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees with highest salary 
+22:42:28.270 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees full info by id = 1 
+22:42:28.275 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get min salary 
+22:42:28.278 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for create employee Employee{id=null, department='null', name='null', salary=0, position=null} 
+22:42:28.288 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for delete employee by id = 1 
+22:42:28.293 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employee by id = 1 
+22:42:28.294 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Method for get employee by id = 1 return Optional[Employee{id=1, department='null', name='null', salary=0, position=null}]
+22:42:28.298 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees report by id = 1 
+22:42:28.302 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for save report
+22:42:28.306 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for update employee Employee{id=null, department='null', name='null', salary=0, position=null} 
+22:42:28.308 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get salary sum all employees 
+22:42:28.315 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get max salary 
+22:42:28.318 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees with salary greater than 150 
+22:42:28.322 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees by page = 1 
+22:47:32.425 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for read file content
+22:47:32.497 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees by position = Engineer 
+22:47:32.512 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get high salary employees 
+22:47:32.512 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get salary sum all employees 
+22:47:32.513 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Method for get high salary employees return [Employee{id=null, department='null', name='null', salary=300, position=null}]
+22:47:32.524 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get report file path by id where id = 1 
+22:47:32.530 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees with highest salary 
+22:47:32.535 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees full info by id = 1 
+22:47:32.539 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get min salary 
+22:47:32.544 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for create employee Employee{id=null, department='null', name='null', salary=0, position=null} 
+22:47:32.557 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for delete employee by id = 1 
+22:47:32.563 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employee by id = 1 
+22:47:32.563 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Method for get employee by id = 1 return Optional[Employee{id=1, department='null', name='null', salary=0, position=null}]
+22:47:32.567 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees report by id = 1 
+22:47:32.572 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for save report
+22:47:32.577 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for update employee Employee{id=null, department='null', name='null', salary=0, position=null} 
+22:47:32.581 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get salary sum all employees 
+22:47:32.586 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get max salary 
+22:47:32.591 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees with salary greater than 150 
+22:47:32.594 [main] INFO  r.s.l.s.w.pojo.EmployeeServiceImpl - Was invoked method for get employees by page = 1 

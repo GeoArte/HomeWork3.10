@@ -9,12 +9,10 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -285,8 +283,11 @@ class EmployeeServiceImplTest {
         // Создание тестовых данных
         String jsonContent = "{\"department\": \"HR\", \"employeeCount\": 5}";
 
-        // Мокируем вызовы к reportRepository.saveReportToFile()
-        when(employeeService.saveReportToFile(jsonContent)).thenReturn("/path/to/save/directory/report.json");
+        String filePath = "/path/to/save/directory/report.json";
+
+        try (FileWriter fileWriter = new FileWriter(filePath)) {
+            fileWriter.write(jsonContent);
+        }
 
         // Вызываем метод, который мы тестируем
         String result = employeeService.saveReportToFile(jsonContent);
@@ -313,7 +314,7 @@ class EmployeeServiceImplTest {
     @Test
     public void testReadFileContent() throws IOException {
         // Создание тестовых данных
-        String filePath = "/path/to/save/directory/report.json";
+        String filePath = "C:/Users/gosha/IdeaProjects/web-library/web-library/src/main/resources/report.json";
 
         // Мокируем вызовы к employeeService.readFileContent()
         when(employeeService.readFileContent(filePath)).thenReturn("{\"department\": \"HR\", \"employeeCount\": 5}");
