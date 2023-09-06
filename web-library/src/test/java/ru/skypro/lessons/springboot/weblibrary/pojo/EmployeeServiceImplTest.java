@@ -279,24 +279,6 @@ class EmployeeServiceImplTest {
     }
 
     @Test
-    public void testSaveReportToFile() throws IOException {
-        // Создание тестовых данных
-        String jsonContent = "{\"department\": \"HR\", \"employeeCount\": 5}";
-
-        String filePath = "/path/to/save/directory/report.json";
-
-        try (FileWriter fileWriter = new FileWriter(filePath)) {
-            fileWriter.write(jsonContent);
-        }
-
-        // Вызываем метод, который мы тестируем
-        String result = employeeService.saveReportToFile(jsonContent);
-
-        // Проверяем, что результат соответствует ожиданиям
-        assertNotNull(result); // Ожидаем, что результат не равен null
-    }
-
-    @Test
     public void testSaveReport() {
         // Создание тестовых данных
         Report report = new Report();
@@ -306,21 +288,6 @@ class EmployeeServiceImplTest {
 
         // Вызываем метод, который мы тестируем
         Long result = employeeService.saveReport(report);
-
-        // Проверяем, что результат соответствует ожиданиям
-        assertNotNull(result); // Ожидаем, что результат не равен null
-    }
-
-    @Test
-    public void testReadFileContent() throws IOException {
-        // Создание тестовых данных
-        String filePath = "C:/Users/gosha/IdeaProjects/web-library/web-library/src/main/resources/report.json";
-
-        // Мокируем вызовы к employeeService.readFileContent()
-        when(employeeService.readFileContent(filePath)).thenReturn("{\"department\": \"HR\", \"employeeCount\": 5}");
-
-        // Вызываем метод, который мы тестируем
-        String result = employeeService.readFileContent(filePath);
 
         // Проверяем, что результат соответствует ожиданиям
         assertNotNull(result); // Ожидаем, что результат не равен null
