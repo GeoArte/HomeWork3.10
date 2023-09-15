@@ -34,15 +34,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> findAllEmployees() {
         return employeeRepository.findAllEmployees();
     }
-
-    public List<EmployeeDTO> getAllEmployees() {
-        // Получаем список сотрудников из репозитория,
-        // Преобразуем их в DTO и собираем в список
-        logger.info("Was invoked method for get all employees ");
-        return employeeRepository.findAllEmployees().stream()
-                .map(EmployeeDTO::fromEmployee)
-                .collect(Collectors.toList());
-    }
     public int getSalarySum() {
         logger.info("Was invoked method for get salary sum all employees ");
         int sum = 0;
